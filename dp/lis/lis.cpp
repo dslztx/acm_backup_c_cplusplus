@@ -1,7 +1,7 @@
 /*
  * 当前已求出的最长上升子序列长度为len。
- * 先判断s[i]与a[len]。若a[len]<=s[i]，则将s[i]接在a[len]后将得到一个更长的上升子序列；
- * 否则，在a[1]..a[len]中，找到最大的j，满足a[j] <= s[i]。令k = j + 1，此时必有a[j] <= s[i] <= a[k]，将s[i]接在a[j]后将得到一个更长的上升子序列，同时更新a[k] =s[i]。
+ * 先判断s[i]与a[len]。若a[len]<s[i]，则将s[i]接在a[len]后将得到一个更长的上升子序列；
+ * 否则，在a[1]..a[len]中，找到最大的j，满足a[j] < s[i]。令k = j + 1，此时必有a[j] < s[i] <= a[k]，更新a[k] =s[i]。
  *
  * 时间复杂度：O(nlogn)
  */
@@ -15,7 +15,7 @@ using namespace std;
 const int MAXN = 1005;
 int h[MAXN], q[MAXN];
 
-//dp[i]表示选择i后最长的序列
+//dp[i]表示以i为末尾元素时最长上升子序列的长度
 int LIS(int n, int *dp) {
     int l, r, mid, len = 1;
     q[len] = h[0], dp[0] = len;
